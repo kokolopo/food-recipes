@@ -30,13 +30,11 @@ const Login = () => {
 
                     <form className='w-[300px]' action="/landing" method="get">
                         {/* inputan */}
-                        <Textinput title={"E-mail"} placeholder={"Enter Your Email"} name={"email"} />
-
-                        <Textinput title={"Username"} placeholder={"Your Username"} name={"username"} />
+                        <Textinput title={"E-mail"} placeholder={"Email"} name={"email"} />
 
                         <div className="relative mt-3 w-auto px-[28px] text-secondaryText focus-within:text-primary">
                             <label className="text-xs text-[#696F79] font-medium">Password
-                                <input type="text" name="email"
+                                <input type="password" name="email"
                                     className="shadow-md py-[10px] min-w-full mt-1 text-[12px]
                                     bg-secondary placeholder:text-secondaryText 
                                     rounded-[6px] pl-5 focus:outline-primary focus:outline-none"
@@ -70,14 +68,6 @@ const Login = () => {
                     </div>
                 </div>
             </div >
-
-
-            {/* <div className="relative mt-3 w-auto px-[28px] text-secondaryText focus-within:text-primary">
-                <span className="absolute inset-y-0 left-[30px] flex items-center pl-[10px]">
-                    <FiUser size={15} />
-                </span>
-                <input type="text" name="email" className="py-[10px] min-w-full text-[12px] bg-secondary placeholder:text-secondaryText rounded-[10px] pl-10 focus:outline-primary focus:text-primary " placeholder="Email" autocomplete="off" />
-            </div> */}
         </>
     )
 }

@@ -1,13 +1,25 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'AirBnB';
+    src: url('../src/assets/airbnb-cereal-font/AirbnbCereal_W_Lt.otf');
+    /* tambahkan properti lainnya seperti font-weight dan font-style jika diperlukan */
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html, body {
+    font-family: 'AirBnB';
+}
+
+body {
+    background-color: #E5E5E5;
+}
+
+.hide-scroll-bar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+.hide-scroll-bar::-webkit-scrollbar {
+    display: none;
 }

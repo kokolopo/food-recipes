@@ -1,9 +1,31 @@
-import React from 'react'
 import Navbar from '../components/Navbar'
 import { CiImageOn } from "react-icons/ci";
+import { AiFillCloseSquare } from "react-icons/ai";
 import Footers from '../components/Footer';
+import React, { useRef, useState } from 'react';
 
 const AddRecipe = () => {
+    const fileInputRef = useRef(null);
+    const [hidden, setHidden] = useState("");
+    const [image, setImage] = useState('');
+    // const [imageSrc, setImageSrc] = useState(null);
+
+    const handleImageClick = () => {
+        fileInputRef.current.click();
+    };
+    const handleFileChange = (event) => {
+        const file = event.target.files[0];
+        if (file && file.type.startsWith('image/')) {
+            // Lakukan sesuatu dengan file gambar
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                // setImageSrc(e.target.result);
+                setHidden("hidden")
+                setImage(`url(${reader.result})`)
+            };
+            reader.readAsDataURL(file);
+        }
+    };
     return (
         <>
             {/* screeen 1 */}
@@ -20,11 +42,30 @@ const AddRecipe = () => {
                 >
 
                     <div className='rounded-md sm:w-full h-[50vh] bg-[#F6F5F4] flex flex-col justify-center items-center hover:cursor-pointer'>
-                        <div className='text-3xl'>
-                            <CiImageOn />
+                        {
+                            image &&
+                            <div className="bg-cover bg-no-repeat h-full w-full flex items-center justify-center rounded-md"
+                                style={{ backgroundImage: image }}
+                            >
+                                <div className='bg-red-400 px-2 py-2 w-fit rounded-md'>
+                                    <AiFillCloseSquare className='text-white' onClick={() => {
+                                        setImage(null)
+                                        setHidden("")
+                                    }} />
+                                </div>
+                            </div>
+                        }
+                        <div className={hidden + " text-3xl flex flex-col justify-center items-center"}>
+                            <CiImageOn onClick={handleImageClick} />
+                            <span className='text-sm'>Add Photo</span>
                         </div>
-                        <span className='text-sm'>Add Photo</span>
-                        {/* <input type="file" className="file-input file-input-ghost w-full max-w-xs" /> */}
+                        <input
+                            type="file"
+                            style={{ display: 'none' }}
+                            ref={fileInputRef}
+                            accept="image/*"
+                            onChange={handleFileChange}
+                        />
                     </div>
 
                     <input type="text" placeholder="Title"

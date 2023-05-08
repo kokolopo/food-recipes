@@ -7,22 +7,23 @@ import DetailRecipe from "../pages/DetailRecipe";
 import LandingPage from "../pages/LandingPage";
 import { createBrowserRouter } from "react-router-dom";
 import Halaman from "../pages/Halaman";
+import Login from "../pages/Login";
 
 export const Router = createBrowserRouter([
   {
-    path: "/",
-    element: <App />,
+    path: "/login",
+    element: <Login />,
   },
   {
     path: "/register",
     element: <Register />,
   },
   {
-    path: "/Landing",
+    path: "/",
     element: <LandingPage />,
   },
   {
-    path: "/detail",
+    path: "/detail/:id",
     element: <DetailRecipe />,
   },
   {
@@ -40,5 +41,9 @@ export const Router = createBrowserRouter([
   {
     path: "/halaman",
     element: <Halaman />,
+  },
+  {
+    path: "/refactory",
+    element: <App />,
   },
 ]);

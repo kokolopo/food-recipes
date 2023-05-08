@@ -3,6 +3,7 @@ import gambar1 from "../assets/images/populer1.png";
 import gambar2 from "../assets/images/populer2.png";
 
 const Carousel = () => {
+
     return (
         <>
             <div className="flex overflow-x-scroll pb-3 hide-scroll-bar">

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FiSearch, FiUser } from "react-icons/fi";
 import Carousel from '../components/Carousel';
 import CardRecipe from '../components/CardRecipe'
@@ -9,15 +9,17 @@ import vektor from '../assets/images/bg_vector.png'
 import newRecipe from '../assets/images/newRecipe1.png'
 import Footers from '../components/Footer';
 import Navbar from '../components/Navbar';
+import { Link } from 'react-router-dom';
 
 const LandingPage = () => {
-    return (
-        <>
+    const [user] = useState(localStorage.getItem('token'))
 
+    return (
+        <><div>
             {/* screen 1 */}
             <div className='hidden w-screen relative sm:h-screen sm:flex'>
                 {/* Hero Images */}
-                <div className='hidden sm:block absolute right-16 w-[470px] top-16'>
+                <div className='hidden sm:block absolute right-36 w-[470px] top-28'>
                     <div className='absolute w-60 left-30 top-2'>
                         <img src={vektor} alt="" />
                         <img src={vektor} alt="" />
@@ -34,13 +36,10 @@ const LandingPage = () => {
 
                 {/* Kanan */}
                 <div className='w-screen h-screen sm:w-3/4 bg-[#FFF5EC] flex flex-col sm:justify-center'>
-                    <div className="absolute top-4 left-24">
+                    <div className="absolute top-4 left-10">
                         {/* Navbar */}
-                        <ul className="menu menu-horizontal font-semibold space-x-6 text-sm text-[#2E266F]">
-                            <li><a href='/landing'>Home</a></li>
-                            <li><a href='/add'>Add Recipe</a></li>
-                            <li><a href='/profile'>Profile</a></li>
-                        </ul>
+                        <Navbar />
+
                     </div>
 
                     {/* Banner */}
@@ -70,12 +69,14 @@ const LandingPage = () => {
                 <div className="hidden sm:w-1/4 sm:h-screen sm:bg-primary sm:block">
                     {/* Avatar  */}
                     <div className='relative'>
-                        <div className="avatar online w-10 my-5 ml-36">
-                            <div className="w-28 bg-white pl-[10px] py-2 rounded-full">
-                                <FiUser size={20} stroke='gray' />
-                            </div>
-                        </div>
-                        <p className='absolute right-10 top-7 text-white'>Login</p>
+                        {user ?
+                            <div className="avatar online w-10 my-5 ml-36">
+                                <div className="w-28 bg-white pl-[10px] py-2 rounded-full">
+                                    <FiUser size={20} stroke='gray' />
+                                </div>
+                            </div> :
+                            <p className='my-5 ml-36 text-white hover:cursor-pointer font-semibold'><Link to={'/login'}>Login</Link></p>
+                        }
                     </div>
 
 
@@ -135,6 +136,8 @@ const LandingPage = () => {
                 </p>
                 <div className='sm:hidden '>
                     <ListRecipes />
+
+
                 </div>
 
             </div>
@@ -187,7 +190,7 @@ const LandingPage = () => {
             <div className='w-screen h-auto sm:h-screen bg-[#FFF5EC] flex justify-end items-end'>
                 <Footers />
             </div>
-
+        </div>
         </>
     )
 }

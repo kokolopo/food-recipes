@@ -1,9 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from '../components/Navbar'
 import { FiEdit3 } from "react-icons/fi";
 import Footers from '../components/Footer';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ProfileUser = () => {
+    const [user] = useState(localStorage.getItem('token'))
+    const decodedToken = JSON.parse(atob(user.split('.')[1]));
+    const username = decodedToken.name;
+
     return (
         <>
             <div className='w-screen h-screen pt-5'>
@@ -19,7 +25,7 @@ const ProfileUser = () => {
                     >
                         <FiEdit3 />
                     </div>
-                    <h1 className='text-black font-semibold'>Garneta Sharina</h1>
+                    <h1 className='text-black font-semibold'>{username}</h1>
                 </div>
 
                 <div className='px-14 border-b-2 border-white pb-2 mt-20'>

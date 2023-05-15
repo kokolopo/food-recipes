@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom"
 import InputField from "../Elements/Input"
 import PrimaryButton from "../Elements/Button"
 import Checkbox from "../Elements/Checkbox"
+import { useDispatch } from "react-redux"
+import { addSuccessRegist } from "../../slices/registerSlice"
 
 const FormRegister = () => {
     const [name, setName] = useState('')
@@ -12,13 +14,16 @@ const FormRegister = () => {
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
 
-    // const [errors, serErrors] = useState('')
-    // const [hidden, setHidden] = useState('')
+    const [errors, serErrors] = useState(null)
+    const [hidden, setHidden] = useState('')
+
+    const dispatch = useDispatch()
 
     const navigate = useNavigate()
 
     const onSubmitHandle = async (e) => {
         e.preventDefault()
+        setHidden('')
 
         try {
             const response = await axios.post('http://localhost:4000/users', {
@@ -29,23 +34,31 @@ const FormRegister = () => {
                 confPassword: confirmPassword
             })
             console.log(response);
+            dispatch(addSuccessRegist())
 
             navigate('/login')
         } catch (error) {
-            // serErrors(error.response.data)
-            console.log(error);
+            serErrors(error.response.data.error)
+            console.log(error.response.data.error);
         }
+    }
 
+    const onClickAlert = () => {
+        setHidden('hidden')
+        serErrors(null)
     }
 
     return (
         <>
-            {/* <div className={`alert alert-error shadow-lg absolute top-2 w-auto ${hidden}`} onClick={() => setHidden('hidden')}>
-                <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                    <span>{errors}</span>
-                </div>
-            </div> */}
+            {
+                errors !== null ?
+                    <div className={`alert alert-error shadow-lg absolute top-2 w-auto ${hidden}`} onClick={onClickAlert}>
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                            <span>{errors}</span>
+                        </div>
+                    </div> : ''
+            }
 
             <form className='w-[300px] flex flex-col gap-4' onSubmit={e => onSubmitHandle(e)}>
                 <InputField
@@ -95,7 +108,9 @@ const FormRegister = () => {
 
                 <Checkbox>I agree to terms & conditions</Checkbox>
 
-                <PrimaryButton classname={"w-full"}>Log In</PrimaryButton>
+                <PrimaryButton classname={"w-full"}>
+                    Sign Up
+                </PrimaryButton>
             </form>
         </>
     )

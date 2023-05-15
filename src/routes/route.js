@@ -8,6 +8,9 @@ import LandingPage from "../pages/LandingPage";
 import { createBrowserRouter } from "react-router-dom";
 import Halaman from "../pages/Halaman";
 import Login from "../pages/Login";
+import PrivateRoute from "./PrivateRoute";
+import Recipes from "../pages/Recipes";
+import EditRecipe from "../pages/EditRecipe";
 
 export const Router = createBrowserRouter([
   {
@@ -33,6 +36,11 @@ export const Router = createBrowserRouter([
   {
     path: "/add",
     element: <AddRecipe />,
+    // element: <AddRecipe />,
+  },
+  {
+    path: "/edit/:id",
+    element: <EditRecipe />,
   },
   {
     path: "/video",
@@ -45,5 +53,9 @@ export const Router = createBrowserRouter([
   {
     path: "/refactory",
     element: <App />,
+  },
+  {
+    path: "/recipes",
+    element: <Recipes />,
   },
 ]);

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { FiSearch, FiUser } from "react-icons/fi";
 import Carousel from '../components/Carousel';
 import CardRecipe from '../components/CardRecipe'
@@ -9,15 +9,28 @@ import vektor from '../assets/images/bg_vector.png'
 import newRecipe from '../assets/images/newRecipe1.png'
 import Footers from '../components/Footer';
 import Navbar from '../components/Navbar';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { search } from '../slices/recipesSlice';
 
 const LandingPage = () => {
-    const [user] = useState(localStorage.getItem('token'))
+    const [user, setUser] = useState(localStorage.getItem('token'))
+    const [key, setKey] = useState('')
+    const navigate = useNavigate()
+
+    const dispatch = useDispatch()
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        console.log(key);
+        navigate('/recipes');
+        dispatch(search(key)) // Ganti '/next-page' dengan rute yang sesuai
+    };
 
     return (
         <><div>
             {/* screen 1 */}
-            <div className='hidden w-screen relative sm:h-screen sm:flex'>
+            <div className='relative hidden w-screen sm:h-screen sm:flex'>
                 {/* Hero Images */}
                 <div className='hidden sm:block absolute right-36 w-[470px] top-28'>
                     <div className='absolute w-60 left-30 top-2'>
@@ -47,7 +60,10 @@ const LandingPage = () => {
                         <p className='hidden sm:block sm:text-5xl sm:font-bold sm:text-[#2E266F] sm:mb-7'>Discover Recipe & Delicious Food</p>
 
                         {/* Input Search */}
-                        <div className="relative sm:mt-3 sm:w-auto text-secondaryText focus-within:text-primary">
+                        <form
+                            onSubmit={handleSubmit}
+                            className="relative sm:mt-3 sm:w-auto text-secondaryText focus-within:text-primary"
+                        >
                             <span className="absolute inset-y-0 left-[3px] flex items-center pl-[10px]">
                                 <FiSearch size={15} />
                             </span>
@@ -58,8 +74,12 @@ const LandingPage = () => {
                                         focus:text-primary focus:outline-none"
                                 placeholder="Search Recipe"
                                 autocomplete="off"
+                                onChange={(e) => {
+                                    setKey(e.target.value)
+                                    console.log(key);
+                                }}
                             />
-                        </div>
+                        </form>
 
                     </div>
 
@@ -70,12 +90,18 @@ const LandingPage = () => {
                     {/* Avatar  */}
                     <div className='relative'>
                         {user ?
-                            <div className="avatar online w-10 my-5 ml-36">
+                            <div className="w-10 my-5 avatar online ml-36 group">
                                 <div className="w-28 bg-white pl-[10px] py-2 rounded-full">
                                     <FiUser size={20} stroke='gray' />
                                 </div>
+                                <ul class="hidden group-hover:block absolute top-0 left-10 bg-white p-2">
+                                    <Link to={'/'} onClick={() => {
+                                        setUser(null)
+                                        localStorage.clear()
+                                    }}>Logout</Link>
+                                </ul>
                             </div> :
-                            <p className='my-5 ml-36 text-white hover:cursor-pointer font-semibold'><Link to={'/login'}>Login</Link></p>
+                            <p className='my-5 font-semibold text-white ml-36 hover:cursor-pointer'><Link to={'/login'}>Login</Link></p>
                         }
                     </div>
 
@@ -86,11 +112,14 @@ const LandingPage = () => {
             {/* screen 2 */}
             <div className='w-screen h-screen bg-[#FFF5EC] pt-1 sm:pt-5'>
                 {/* navbar */}
-                <div className='sm:hidden flex justify-center'>
+                <div className='flex justify-center sm:hidden'>
                     <Navbar />
                 </div>
                 {/* Input Search */}
-                <div className="sm:hidden mb-5 relative px-5 sm:mt-3 sm:w-auto text-secondaryText focus-within:text-primary">
+                <form
+                    onSubmit={handleSubmit}
+                    className="relative px-5 mb-5 sm:hidden sm:mt-3 sm:w-auto text-secondaryText focus-within:text-primary"
+                >
                     <span className="absolute inset-y-0 left-[25px] flex items-center pl-[10px]">
                         <FiSearch size={15} />
                     </span>
@@ -101,28 +130,33 @@ const LandingPage = () => {
                         focus:text-primary focus:outline-none"
                         placeholder="Search Recipe"
                         autocomplete="off"
+                        onChange={(e) => {
+                            setKey(e.target.value)
+                            console.log(key);
+                        }}
                     />
-                </div>
+                </form>
+
                 {/* Heading */}
-                <div className='w-52 h-8 flex flex-row items-center sm:ml-28 ml-5'>
-                    <div className='h-8 w-2 bg-primary'> </div>
+                <div className='flex flex-row items-center h-8 ml-5 w-52 sm:ml-28'>
+                    <div className='w-2 h-8 bg-primary'> </div>
                     <div className='ml-3 text-[#2E266F] font-semibold'>
                         <p>Popular For You</p>
                     </div>
                 </div>
 
                 {/* Popular For You */}
-                <div className='sm:relative mt-5 sm:mt-10'>
-                    <div className='w-40 sm:relative sm:block hidden'>
+                <div className='mt-5 sm:relative sm:mt-10'>
+                    <div className='hidden w-40 sm:relative sm:block'>
                         <img src={vektor} alt="vektor" />
                     </div>
-                    <div className='mt-3 ml-3 mb-3 z-0 sm:mt-0 sm:absolute top-7'>
+                    <div className='z-0 mt-3 mb-3 ml-3 sm:mt-0 sm:absolute top-7'>
                         <Carousel />
                     </div>
                 </div>
 
                 {/* New Recipe */}
-                <p className='sm:hidden text-lg text-black font-semibold mx-5'>
+                <p className='mx-5 text-lg font-semibold text-black sm:hidden'>
                     New Recipe
                 </p>
                 <div className="my-3 sm:hidden ">
@@ -131,7 +165,7 @@ const LandingPage = () => {
 
 
                 {/* Popular Recipe */}
-                <p className='sm:hidden text-lg text-black font-semibold mx-5 mt-2'>
+                <p className='mx-5 mt-2 text-lg font-semibold text-black sm:hidden'>
                     Popular Recipe
                 </p>
                 <div className='sm:hidden '>
@@ -145,25 +179,25 @@ const LandingPage = () => {
             {/* screen 3 */}
             <div className="w-screen h-screen bg-[#FFF5EC] pt-5">
                 {/* Heading */}
-                <div className='w-52 h-8 flex flex-row items-center sm:ml-28 ml-5'>
-                    <div className='h-8 w-2 bg-primary'> </div>
+                <div className='flex flex-row items-center h-8 ml-5 w-52 sm:ml-28'>
+                    <div className='w-2 h-8 bg-primary'> </div>
                     <div className='ml-3 text-[#2E266F] font-semibold'>
                         <p>New Recipe</p>
                     </div>
                 </div>
 
-                <div className='hidden sm:block h-2/3 w-1/4 bg-primary relative mt-10'>
-                    <div className='w-auto flex absolute top-10 left-10'>
+                <div className='relative hidden w-1/4 mt-10 sm:block h-2/3 bg-primary'>
+                    <div className='absolute flex w-auto top-10 left-10'>
                         <div className='w-[380px]'>
                             <img src={newRecipe} alt="gambar" />
                         </div>
-                        <div className=' ml-44 flex flex-col items-start justify-center'>
+                        <div className='flex flex-col items-start justify-center ml-44'>
                             <div className='w-[350px] text-[#3F3A3A] mb-5'>
                                 <p className='text-3xl '>Healthy Bone Broth Ramen (Quick & Easy)</p>
                                 <div className='w-[100px] bg-[#6F6A40] h-[1px] my-5'> </div>
                                 <p className=''>Quick + Easy Chicken Bone Broth Ramen- Healthy chicken ramen in a hurry? That’s right!</p>
                             </div>
-                            <button className=" btn normal-case font-thin text-sm btn-warning text-white btn-md px-8">Learn More</button>
+                            <button className="px-8 text-sm font-thin text-white normal-case btn btn-warning btn-md">Learn More</button>
                         </div>
                     </div>
                 </div>
@@ -172,11 +206,17 @@ const LandingPage = () => {
             {/* screen 4 */}
             <div className="hidden sm:block w-screen h-screen bg-[#FFF5EC] pt-5 px-28">
                 {/* Heading */}
-                <div className='w-52 h-8 flex flex-row items-center sm:ml-0 ml-5'>
-                    <div className='h-8 w-2 bg-primary'> </div>
-                    <div className='ml-3 text-[#2E266F] font-semibold'>
-                        <p>Popular Recipe</p>
+                <div className='flex flex-row items-center justify-between w-full h-8 ml-5 sm:ml-0'>
+                    <div className='flex items-center justify-center'>
+                        <div className='w-2 h-8 bg-primary'> </div>
+                        <div className='ml-3 text-[#2E266F] font-semibold'>
+                            <p>Popular Recipe</p>
+                        </div>
                     </div>
+
+                    <Link to={"/recipes"} className="font-semibold text-primary">
+                        See all
+                    </Link>
                 </div>
 
                 <div className='hidden sm:block'>

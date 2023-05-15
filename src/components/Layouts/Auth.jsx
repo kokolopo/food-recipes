@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom';
 import { ReactComponent as Mama } from '../../assets/images/logo.svg';
 import { FiUser } from "react-icons/fi";
+import { useSelector } from 'react-redux';
 
 const Auth = ({ title, children }) => {
+    const message = useSelector(state => state.register.message)
+
     return (
         <>
             <div className=" sm:w-screen h-screen sm:flex">
@@ -20,6 +23,8 @@ const Auth = ({ title, children }) => {
                     <div className='relative sm:hidden w-28 h-28 mt-10 flex items-center justify-center bg-[#C4C4C4] rounded-full'>
                         <FiUser color='white' size={75} strokeWidth={1} />
                     </div>
+
+                    <p className="text-green-500">{message}</p>
 
                     {/* heading  */}
                     <div className='text-center mt-5'>

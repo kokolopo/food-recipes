@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar'
 import ayudia from '../assets/images/ayudia.png'
 import { BiLike } from "react-icons/bi";
@@ -7,8 +7,7 @@ import Footers from '../components/Footer';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDetail } from '../slices/detailRecipeSlice';
-// import { useParams } from 'react-router-dom';
-// import axios from 'axios';
+import useComments from '../slices/useComments';
 
 const DetailRecipe = () => {
     const { id } = useParams();
@@ -28,15 +27,27 @@ const DetailRecipe = () => {
     // }, [])
     // console.log(recipes.ingredients[0]);
 
+    const [comment, setComment] = useState('')
     const dispatch = useDispatch()
     const { data } = useSelector(state => state.detail)
+
+    const addComment = useComments(state => state.addComment)
+    const comments = useComments(state => state.comments)
+    const fetchComments = useComments(state => state.fetchComments)
 
     useEffect(() => {
         const token = localStorage.getItem('token');
         dispatch(fetchDetail({ recipeId: id, jwtToken: token }))
-    }, [dispatch])
+        fetchComments(token)
+    }, [dispatch, comments])
 
-    console.log(data);
+
+    const handleOnSubmit = (e) => {
+        e.preventDefault()
+
+        addComment(localStorage.getItem("token"), comment)
+    }
+
 
 
     return (
@@ -80,7 +91,7 @@ const DetailRecipe = () => {
                             <p className='mb-3 text-lg font-semibold'>Ingredients</p>
                             <ul className="list-disc list-inside">
                                 {
-                                    data.ingredients.map((item, index) => (<li key={index}>{item}</li>))
+                                    // data.ingredients.map((item, index) => (<li key={index}>{item}</li>))
                                 }
 
                             </ul>
@@ -118,35 +129,46 @@ const DetailRecipe = () => {
                         </div>
                     </div>
                     {/* commenet */}
-                    <div className='flex-col items-center justify-center hidden gap-3 px-5 sm:flex'>
-                        <textarea className="textarea textarea-warning bg-white  sm:w-full h-[38vh]" placeholder="Comment :"></textarea>
+                    <form onSubmit={handleOnSubmit} className='flex-col items-center justify-center hidden gap-3 px-5 sm:flex'>
+                        <textarea className="textarea textarea-warning bg-white  sm:w-full h-[38vh]" placeholder="Comment :"
+                            onChange={e => setComment(e.target.value)} value={comment} />
                         <button className='px-32 font-medium text-white normal-case btn btn-sm bg-primary border-primary'>Send</button>
-                    </div>
+                    </form>
                 </div>
 
                 {/* screeen 3 */}
                 <div className='w-screen h-screen px-5 mb-32 sm:h-auto sm:px-24' >
-                    <div className='flex flex-col items-center justify-center gap-3 sm:hidden'>
-                        <textarea className="textarea textarea-warning bg-white w-full sm:w-full h-[38vh]" placeholder="Comment :"></textarea>
+                    <form onSubmit={handleOnSubmit} className='flex flex-col items-center justify-center gap-3 sm:hidden'>
+                        <textarea className="textarea textarea-warning bg-white w-full sm:w-full h-[38vh]" placeholder="Comment :"
+                            onChange={e => setComment(e.target.value)} value={comment} />
                         <button className='px-32 font-medium text-white normal-case btn btn-sm bg-primary border-primary'>Send</button>
-                    </div>
+                    </form>
 
                     <div className='mt-10 text-black sm:mt-0'>
                         <p className='mb-3 text-lg font-semibold'>Comment</p>
                     </div>
 
-                    <div className='flex flex-row space-x-3 '>
-                        <div className="avatar">
-                            <div className="w-10 rounded-full sm:w-12">
-                                <img src={ayudia} alt='gambar' />
-                            </div>
-                        </div>
+                    {
+                        comments.map((v, i) => (
 
-                        <div className='flex flex-col font-semibold text-black'>
-                            <div className='text-sm'>Ayudia</div>
-                            <div>Nice recipe. simple and delicious, thankyou</div>
-                        </div>
-                    </div>
+                            <>
+                                <div className='flex flex-row mb-3 space-x-3'>
+                                    <div className="avatar">
+                                        <div className="w-10 rounded-full sm:w-12">
+                                            <img src={ayudia} alt='gambar' />
+                                        </div>
+                                    </div>
+
+                                    <div className='flex flex-col font-semibold text-black'>
+                                        <div className='text-sm'>{v.name}</div>
+                                        <div>{v.comment}</div>
+                                    </div>
+                                </div>
+                            </>
+
+                        ))
+                    }
+
 
                 </div>
                 <Footers />

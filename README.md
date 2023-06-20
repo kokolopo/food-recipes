@@ -85,14 +85,14 @@ Before going to the installation stage there are some software that must be inst
 
 ### Installation
 
-If you want to run this project locally, We recommend you to configure the [back-end](https://github.com/altrawan/food-recipe-api) first before configuring this repo front-end.
+If you want to run this project locally, We recommend you to configure the [back-end](https://github.com/kokolopo/Food-Recipe-API) first before configuring this repo front-end.
 - Clone the repo
 ```
-git clone https://github.com/altrawan/mama-recipe-app.git
+git clone https://github.com/kokolopo/food-recipes.git
 ```
 - Go To Folder Repo
 ```
-cd mama-recipe-app
+cd food-recipes
 ```
 - Install Module
 ```
@@ -209,21 +209,21 @@ Contributions are what make the open source community such an amazing place to b
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Related Project
-:rocket: [`Backend Mama Recipe`](https://github.com/altrawan/food-recipe-api)
+:rocket: [`Backend Mama Recipe`](https://github.com/kokolopo/Food-Recipe-API)
 
-:rocket: [`Frontend Mama Recipe`](https://github.com/altrawan/mama-recipe-app)
+:rocket: [`Frontend Mama Recipe`](https://github.com/kokolopo/food-recipes)
 
-:rocket: [`Web Service`](https://mama-recipe.herokuapp.com/)
+<!-- :rocket: [`Web Service`](https://mama-recipe.herokuapp.com/) -->
 
-:rocket: [`Demo Mama Recipe`](https://bit.ly/mama-recipe-app)
+:rocket: [`Demo Mama Recipe`](https://food-recipes-teal.vercel.app/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Contact
 
-My Email : muhammadalifputra8888@gmail.com
+My Email : hadifah3@gmail.com
 
-Project Link: [https://github.com/altrawan/mama-recipe-app](https://github.com/altrawan/mama-recipe-app)
+Project Link: [https://github.com/kokolopo/food-recipes](https://github.com/kokolopo/food-recipes)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

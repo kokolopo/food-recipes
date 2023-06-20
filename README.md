@@ -3,7 +3,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/altrawan/mama-recipe-app">
+  <a href="https://github.com/kokolopo/food-recipes">
     <img src="https://lh3.googleusercontent.com/d/1AuO1tJ469WqoXQufUeR-OkzqAW258aXT" alt="Logo" width="150px">
   </a>
 
@@ -15,17 +15,17 @@
     <a href="#table-of-contents"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://bit.ly/mama-recipe-app">View Demo</a>
+    <a href="https://bit.ly/food-recipes">View Demo</a>
     ·
-    <a href="https://github.com/altrawan/mama-recipe-app/issues">Report Bug</a>
+    <a href="https://github.com/kokolopo/food-recipes/issues">Report Bug</a>
     ·
-    <a href="https://github.com/altrawan/mama-recipe-app/issues">Request Feature</a>
+    <a href="https://github.com/kokolopo/food-recipes/issues">Request Feature</a>
     <br />
     <p align="center">
-      <a href="https://github.com/altrawan/mama-recipe-app/"><img src="https://img.shields.io/github/issues/altrawan/mama-recipe-app?style=flat"></a>
-      <a href="https://github.com/altrawan/mama-recipe-app/"><img src="https://img.shields.io/github/forks/kokolopo/food-recipes?style=flat"></a>
-      <a href="https://github.com/altrawan/mama-recipe-app/"><img src="https://img.shields.io/github/stars/altrawan/mama-recipe-app?style=flat"></a>
-      <a href="https://github.com/altrawan/mama-recipe-app/"><img src="https://img.shields.io/github/license/altrawan/mama-recipe-app?style=flat"></a>
+      <a href="https://github.com/kokolopo/food-recipes/"><img src="https://img.shields.io/github/issues/kokolopo/food-recipes?style=flat"></a>
+      <a href="https://github.com/kokolopo/food-recipes/"><img src="https://img.shields.io/github/forks/kokolopo/food-recipes?style=flat"></a>
+      <a href="https://github.com/kokolopo/food-recipes/"><img src="https://img.shields.io/github/stars/kokolopo/food-recipes?style=flat"></a>
+      <a href="https://github.com/kokolopo/food-recipes/"><img src="https://img.shields.io/github/license/kokolopo/food-recipes?style=flat"></a>
     </p>
   </p>
 </div>

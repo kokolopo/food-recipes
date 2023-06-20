@@ -23,7 +23,7 @@
     <br />
     <p align="center">
       <a href="https://github.com/altrawan/mama-recipe-app/"><img src="https://img.shields.io/github/issues/altrawan/mama-recipe-app?style=flat"></a>
-      <a href="https://github.com/altrawan/mama-recipe-app/"><img src="https://img.shields.io/github/kokolopo/food-recipes?style=flat"></a>
+      <a href="https://github.com/altrawan/mama-recipe-app/"><img src="https://img.shields.io/github/forks/kokolopo/food-recipes?style=flat"></a>
       <a href="https://github.com/altrawan/mama-recipe-app/"><img src="https://img.shields.io/github/stars/altrawan/mama-recipe-app?style=flat"></a>
       <a href="https://github.com/altrawan/mama-recipe-app/"><img src="https://img.shields.io/github/license/altrawan/mama-recipe-app?style=flat"></a>
     </p>

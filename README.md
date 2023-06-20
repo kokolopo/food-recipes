@@ -23,7 +23,7 @@
     <br />
     <p align="center">
       <a href="https://github.com/altrawan/mama-recipe-app/"><img src="https://img.shields.io/github/issues/altrawan/mama-recipe-app?style=flat"></a>
-      <a href="https://github.com/altrawan/mama-recipe-app/"><img src="https://img.shields.io/github/forks/altrawan/mama-recipe-app?style=flat"></a>
+      <a href="https://github.com/altrawan/mama-recipe-app/"><img src="https://img.shields.io/github/kokolopo/food-recipes?style=flat"></a>
       <a href="https://github.com/altrawan/mama-recipe-app/"><img src="https://img.shields.io/github/stars/altrawan/mama-recipe-app?style=flat"></a>
       <a href="https://github.com/altrawan/mama-recipe-app/"><img src="https://img.shields.io/github/license/altrawan/mama-recipe-app?style=flat"></a>
     </p>
@@ -69,10 +69,6 @@ This app was built with some technologies below:
 * [React](https://vuejs.org/v2)
 * [Axios](https://axios-http.com/)
 * [Redux](https://redux.js.org/)
-* [Bootstrap](https://getbootstrap.com/)
-* [Reactstrap](https://reactstrap.github.io/)
-* [styled-components](https://styled-components.com/)
-* [Moment.js](https://styled-components.com/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
